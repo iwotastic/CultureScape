@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fdead8bec53edac46afb738f6cf62e3b
+timeCreated: 1499029446
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 94673
+  packageName: Low Poly Earth
+  packageVersion: 1.0
+  assetPath: Assets/LowPolyEarth/Material_Star.mat
+  uploadId: 188072

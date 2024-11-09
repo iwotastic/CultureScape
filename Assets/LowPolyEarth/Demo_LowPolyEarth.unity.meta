@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e0ecf4acd7a83df42b8568bb8101015c
+timeCreated: 1499023540
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 94673
+  packageName: Low Poly Earth
+  packageVersion: 1.0
+  assetPath: Assets/LowPolyEarth/Demo_LowPolyEarth.unity
+  uploadId: 188072
