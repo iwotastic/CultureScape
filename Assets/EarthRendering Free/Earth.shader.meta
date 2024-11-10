@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b1fac95321091764e8f70867c2a349fd
+timeCreated: 1447260483
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 54914
+  packageName: Earth Rendering Free
+  packageVersion: 1.1
+  assetPath: Assets/EarthRendering Free/Earth.shader
+  uploadId: 218837

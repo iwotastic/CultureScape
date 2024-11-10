@@ -10,32 +10,31 @@ public class ColliderPatchSurface : MonoBehaviour, ISurfacePatch
 
     private PatchSurface _outer;
     private PatchSurface _inner;
-    
-    private void Awake()
-    {
-        _outer = new PatchSurface(outer, this);
-        _inner = new PatchSurface(inner, this);
-    }
 
+    private PatchSurface Outer => _outer ??= new PatchSurface(true, this);
+    private PatchSurface Inner => _inner ??= new PatchSurface(false, this);
+    
     public bool Raycast(in Ray ray, out SurfaceHit hit, float maxDistance = 0) =>
-        _outer.Raycast(ray, out hit, maxDistance);
+        Outer.Raycast(ray, out hit, maxDistance);
     
     public bool ClosestSurfacePoint(in Vector3 point, out SurfaceHit hit, float maxDistance = 0) =>
-        _outer.ClosestSurfacePoint(point, out hit, maxDistance);
+        Outer.ClosestSurfacePoint(point, out hit, maxDistance);
 
-    public Transform Transform => _outer.Transform;
-    public ISurface BackingSurface => _inner;
+    public Transform Transform => Outer.Transform;
+    public ISurface BackingSurface => Inner;
 
     private class PatchSurface : ISurface
     {
-        private readonly Collider _collider;
         private readonly ColliderPatchSurface _surface;
+        private readonly bool _isOuter;
         
-        public PatchSurface(Collider collider, ColliderPatchSurface surface)
+        public PatchSurface(bool isOuter, ColliderPatchSurface surface)
         {
-            _collider = collider;
+            _isOuter = isOuter;
             _surface = surface;
         }
+
+        private Collider SurfaceCollider => _isOuter ? _surface.outer : _surface.inner;
 
         public bool Raycast(in Ray ray, out SurfaceHit hit, float maxDistance = 0)
         {
@@ -43,7 +42,7 @@ public class ColliderPatchSurface : MonoBehaviour, ISurfacePatch
 
             RaycastHit hitInfo;
 
-            if (_collider.Raycast(ray, out hitInfo,
+            if (SurfaceCollider.Raycast(ray, out hitInfo,
                     maxDistance <= 0 ? float.MaxValue : maxDistance))
             {
                 hit.Point = hitInfo.point;
@@ -57,12 +56,12 @@ public class ColliderPatchSurface : MonoBehaviour, ISurfacePatch
 
         public bool ClosestSurfacePoint(in Vector3 point, out SurfaceHit hit, float maxDistance = 0)
         {
-            Vector3 closest = _collider.ClosestPoint(point);
+            Vector3 closest = SurfaceCollider.ClosestPoint(point);
 
             Vector3 delta = closest - point;
             if (delta.sqrMagnitude < _surface.minPokeDistance * _surface.minPokeDistance)
             {
-                Vector3 direction = _collider.bounds.center - point;
+                Vector3 direction = SurfaceCollider.bounds.center - point;
                 return Raycast(new Ray(point - direction,
                     direction), out hit, float.MaxValue);
             }
@@ -70,6 +69,6 @@ public class ColliderPatchSurface : MonoBehaviour, ISurfacePatch
             return Raycast(new Ray(point, delta), out hit, maxDistance);
         }
 
-        public Transform Transform => _collider.transform;
+        public Transform Transform => SurfaceCollider.transform;
     }
 }

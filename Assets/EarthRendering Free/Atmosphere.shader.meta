@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7dbc4cd654bdf3443af103ac66641569
+timeCreated: 1447260483
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 54914
+  packageName: Earth Rendering Free
+  packageVersion: 1.1
+  assetPath: Assets/EarthRendering Free/Atmosphere.shader
+  uploadId: 218837
