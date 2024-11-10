@@ -33,7 +33,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _Wobble
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -131,11 +131,11 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 1
     - _TimeScale: 1
-    - _Wobble: 0.025
+    - _Wobble: 0.1
     - _WorkflowMode: 1
     - _XOffset: 0
     - _YOffset: 1
-    - _ZOffset: 0.98
+    - _ZOffset: 1.5
     - _ZWrite: 0
     m_Colors:
     - _Accent: {r: 1, g: 1, b: 1, a: 1}
